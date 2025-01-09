@@ -46,8 +46,8 @@ void Motores(int left, int right) {
 
 // Función para emitir un sonido
 void beep(unsigned int frec=2000, unsigned int dur=100){
-  // tone(PINBUZZER, frec, dur); // Emite un tono de 2000 Hz durante 100 ms
-  // delay(200);
+  tone(PINBUZZER, frec, dur); // Emite un tono de 2000 Hz durante 100 ms
+  delay(200);
 }
 
 void Peripherals_init() {

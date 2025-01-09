@@ -37,6 +37,7 @@ int velocidades[CANT_VELOCIDADES] = {50, 80, 100};
 int base = 50;
 float Kp = 1.0;
 float Kd = 6.0;
+float Ki = 0.0;
 
 int setpoint = 0;
 int error = 0;
@@ -70,9 +71,20 @@ void init_all(){
 void load_data(){
     Kp = datos.getFloat("P", 0.0);
     Kd = datos.getFloat("D", 0.0);
+    Ki = datos.getFloat("I", 0.0);
     base = datos.getInt("B", 0);
     pot_limite = datos.getInt("M", 250);
     white_line = datos.getBool("W", true);
+
+    //Imprimir
+    Serial.println("Datos:\n");
+    Serial.println("KP: " + String(Kp));
+    Serial.println("KD: " + String(Kd));
+    Serial.println("KI: " + String(Ki));
+    Serial.println("Base: " + String(base));
+    Serial.println("Pot limite: " + String(pot_limite));
+    Serial.println("White line: " + String(white_line));
+    Serial.println("=====================\n");
 }
 
 
@@ -150,12 +162,12 @@ void detectGeo() {
 
 
 void funcion_Cruce(){
-    beep(2500, 50);
+    // beep(2500, 50);
 }
 
 
 void funcion_HL(){
-    beep(2000, 50);
+    // beep(2000, 50);
 }
 
 

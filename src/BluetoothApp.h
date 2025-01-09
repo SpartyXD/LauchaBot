@@ -48,26 +48,33 @@ void handleCommand(String &command){
     case 'P':
         Kp = value;
         datos.putFloat("P", value);
+        Serial.println("Kp ---> " + String(Kp) + "\n");
         break;
     case 'I':
-        // bot.setPID(-1, value, -1);
+        Ki = value;
+        datos.putFloat("I", value);
+        Serial.println("I ---> " + String(Ki) + "\n");
         break;
     case 'D':
         Kd = value;
         datos.putFloat("D", value);
+        Serial.println("D ---> " + String(Kd) + "\n");
         break;
     //-----------------------
     case 'W':
-        white_line = value;
-        datos.putBool("W", bool(value));
+        white_line = bool(value);
+        datos.putBool("W", white_line);
+        Serial.println("White line ---> " + String(white_line) + "\n");
         break;
     case 'B':
         base = int(value);
-        datos.putInt("B", int(value));
+        datos.putInt("B", base);
+        Serial.println("Base ---> " + String(base) + "\n");
         break;
     case 'M':
         pot_limite = int(value);
-        datos.putInt("M", int(value));
+        datos.putInt("M", pot_limite);
+        Serial.println("Pot limite ---> " + String(pot_limite) + "\n");
         break;
     //------------------------
     default:
