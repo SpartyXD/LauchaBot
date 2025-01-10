@@ -41,7 +41,7 @@ void handleCommand(String &command){
     }
 
     double value = command.substring(1).toDouble();
-    beep(650, 200);
+    beep(350, 200);
     
     switch (letter)
     {

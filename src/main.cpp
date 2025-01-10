@@ -10,6 +10,9 @@ void setup() {
   delay(500);
 
   startupBeep();
+  delay(500);
+  calibrateBeep();
+  
   WaitBoton();
   calibracion();
 }
@@ -28,10 +31,11 @@ void loop(){
   //Obtener error
   int error = pos - setpoint;
   int d = error - last_error;
+  update_error(error);
   last_error = error;
 
   //Obtener PID
-  int pot_giro = int(Kp * error) + int(Kd * (d));
+  int pot_giro = int(Kp * error) + int(Kd * (d)) + int(Ki * (error_sum));
   pot_giro = constrain(pot_giro, -pot_limite, pot_limite);
 
   Motores(base + pot_giro, base - pot_giro);

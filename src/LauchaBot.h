@@ -12,6 +12,8 @@
 
 //Main
 void init_all();
+void restart_errors();
+void update_error(int &e);
 void load_data();
 void start_Race();
 void end_race();
@@ -38,6 +40,11 @@ int base = 50;
 float Kp = 1.0;
 float Kd = 6.0;
 float Ki = 0.0;
+
+#define CANT_ERRORES 25
+int error_sum = 0;
+int errors[CANT_ERRORES];
+int current_idx = 0;
 
 int setpoint = 0;
 int error = 0;
@@ -67,6 +74,24 @@ void init_all(){
     load_data();
 }
 
+void restart_errors(){
+    error = 0;
+    error_sum = 0;
+    last_error = 0;
+    current_idx = 0;
+
+    rep(i, CANT_ERRORES)
+        errors[i] = 0;
+}
+
+
+void update_error(int &e){
+    error_sum -= errors[current_idx];
+    errors[current_idx] = e;
+    error_sum += e;
+    current_idx = (current_idx+1)%CANT_ERRORES;
+}
+
 
 void load_data(){
     Kp = datos.getFloat("P", 0.0);
@@ -91,8 +116,7 @@ void load_data(){
 void start_Race(){
     ON_RACE = true;
     fin = 0;
-    error = 0;
-    last_error = 0;
+    restart_errors();
 
     beep(2000, 100);
     beep(2300, 200);
@@ -115,8 +139,8 @@ void Read_hits(){
     HL = analogRead(LEFT_PIN);
     HR = analogRead(RIGHT_PIN);
 
-    int umbral_L = (v_s_min[LEFT_IDX] + v_s_max[LEFT_IDX])/2;
-    int umbral_R = (v_s_min[RIGHT_IDX] + v_s_max[RIGHT_IDX])/2;
+    int umbral_L = (v_s_min[LEFT_IDX] + v_s_max[LEFT_IDX]) * 0.6;
+    int umbral_R = (v_s_min[RIGHT_IDX] + v_s_max[RIGHT_IDX]) * 0.6;
 
     Serial.println(String(HL) + " " + String(HR));
 

@@ -87,4 +87,15 @@ void chillBeep(){
     beep(1000, 150);
 }
 
+
+void calibrateBeep(){
+    beep(700, 100);
+    delay(50);
+    beep(1000, 100);
+    delay(50);
+    beep(1300, 100);
+    delay(150);
+    beep(1000, 150);
+}
+
 #endif
