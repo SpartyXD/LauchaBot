@@ -24,17 +24,20 @@ Modulo para administrar de mejor manera los pines :D
 
 //------- Motores ----------
 //Izq
-# define AIN1 8  
-# define AIN2 9  
+# define AIN1 9
+# define AIN2 8
+# define PWMA 5
 
 //Der
-# define BIN1 4 
-# define BIN2 7   
+# define BIN1 7 
+# define BIN2 4 
+# define PWMB 6 
 
 //------- Sensores IR ----------
 
 #define SENSOR_COUNT 6
 const int sensorCentralPins[SENSOR_COUNT] = {A6, A5, A4, A3, A2, A1};
+const double weights[SENSOR_COUNT] = {-2.5, -1.5, -0.5, 0.5, 1.5, 2.5};
 
 #define LEFT_PIN A7
 #define RIGHT_PIN A0

@@ -114,12 +114,9 @@ int GetPos(){
   readSensors();
   int prom = 0;
 
-  double w = -3.5;
-  rep(i, SENSOR_COUNT){
-    prom += w*s_p[i];
-    w += 1.0;
-  }
-
+  rep(i, SENSOR_COUNT)
+    prom += weights[i]*s_p[i];
+  
   int sum = 0;
   rep(i, SENSOR_COUNT)
     sum += s_p[i];

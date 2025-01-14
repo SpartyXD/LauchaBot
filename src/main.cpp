@@ -5,8 +5,8 @@
 void WaitBoton();
 
 void setup() {
-  init_all();
   initApp();
+  init_all();
   delay(500);
 
   startupBeep();
@@ -20,7 +20,6 @@ void setup() {
 
 void loop(){
   int p = GetPos();
-  detectGeo();
 
   if(!ON_RACE){
     WaitBoton();
@@ -38,6 +37,7 @@ void loop(){
   int pot_giro = int(Kp * error) + int(Kd * (d)) + int(Ki * (error_sum));
   pot_giro = constrain(pot_giro, -pot_limite, pot_limite);
 
+  Serial.println(String(base+pot_giro) + "\t" + String(base-pot_giro));
   Motores(base + pot_giro, base - pot_giro);
   last_error = error;
 }
@@ -48,7 +48,7 @@ void WaitBoton(){
   Serial.println("\nEsperando boton\n");
   delay(1000);
 
-  while(digitalRead(BUTTON_PIN_A))
+  while(!digitalRead(BUTTON_PIN_A))
     updateData();
   
   beep();

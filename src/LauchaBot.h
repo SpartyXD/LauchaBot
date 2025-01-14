@@ -34,7 +34,7 @@ void funcion_Cruce();
 int velocidades[CANT_VELOCIDADES] = {50, 80, 100};
 
 //PID
-int base = 50;
+int base = 200;
 float Kp = 1.0;
 float Kd = 6.0;
 float Ki = 0.0;
@@ -90,12 +90,12 @@ void update_error(int &e){
 
 void load_data(){
     // p=0, i=1, d=2, base=3, limite=4, white=5
-    EEPROM.get(0, Kp);
-    EEPROM.get(2, Kd);
-    EEPROM.get(1, Ki);
-    EEPROM.get(3, base);
-    EEPROM.get(4, pot_limite);
-    EEPROM.get(5, white_line);
+    // EEPROM.get(0, Kp);
+    // EEPROM.get(2, Kd);
+    // EEPROM.get(1, Ki);
+    // EEPROM.get(3, base);
+    // EEPROM.get(4, pot_limite);
+    // EEPROM.get(5, white_line);
 
     //Imprimir
     Serial.println("Datos:\n");

@@ -9,34 +9,40 @@
 void MotorIz(int val) {
   val = constrain(val, -255.0, 255.0);
 
-  if (val >=0.0){
-      analogWrite(AIN1, val);
-      analogWrite(AIN2, 0.0);
+  if (val >= 0) {
+    digitalWrite(AIN1, HIGH);
+    digitalWrite(AIN2, LOW);
+  } else {
+    //atras
+    digitalWrite(AIN1, LOW);
+    digitalWrite(AIN2, HIGH);
+    val *= -1;
   }
-  else{
-      //Atras
-      analogWrite(AIN1, 0.0);
-      analogWrite(AIN2, -val);
-  }
+
+  // Setea Velocidad
+  analogWrite(PWMA, val);
 }
 
 
 void MotorDe(int val) {
   val = constrain(val, -255.0, 255.0);
 
-  if (val >=0.0){
-      analogWrite(BIN1, val);
-      analogWrite(BIN2, 0.0);
+  if (val >= 0) {
+    digitalWrite(BIN1, HIGH);
+    digitalWrite(BIN2, LOW);
+  } else {
+    //atras
+    digitalWrite(BIN1, LOW);
+    digitalWrite(BIN2, HIGH);
+    val *= -1;
   }
-  else{
-      //Atras
-      analogWrite(BIN1, 0.0);
-      analogWrite(BIN2, -val);
-  }
+
+  // Setea Velocidad
+  analogWrite(PWMB, val);
 }
 
 
-void Motores(int left, int right) {
+void Motores(int left, int right){
   MotorIz(left);
   MotorDe(right);
 }
@@ -58,8 +64,11 @@ void Peripherals_init() {
 
   pinMode(AIN1, OUTPUT);
   pinMode(AIN2, OUTPUT);
+  pinMode(PWMA, OUTPUT);
+
   pinMode(BIN1, OUTPUT);
   pinMode(BIN2, OUTPUT);
+  pinMode(PWMB, OUTPUT);
 }
 
 
