@@ -34,7 +34,7 @@ void funcion_Cruce();
 int velocidades[CANT_VELOCIDADES] = {50, 80, 100};
 
 //PID
-int base = 200;
+int base = 50;
 float Kp = 1.0;
 float Kd = 6.0;
 float Ki = 0.0;

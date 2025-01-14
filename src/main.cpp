@@ -19,6 +19,9 @@ void setup() {
 
 
 void loop(){
+  if(digitalRead(BUTTON_PIN_A))
+    end_race();
+
   int p = GetPos();
 
   if(!ON_RACE){
@@ -36,8 +39,7 @@ void loop(){
   //Obtener PID
   int pot_giro = int(Kp * error) + int(Kd * (d)) + int(Ki * (error_sum));
   pot_giro = constrain(pot_giro, -pot_limite, pot_limite);
-
-  Serial.println(String(base+pot_giro) + "\t" + String(base-pot_giro));
+  
   Motores(base + pot_giro, base - pot_giro);
   last_error = error;
 }
