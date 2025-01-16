@@ -34,10 +34,10 @@ void funcion_Cruce();
 int velocidades[CANT_VELOCIDADES] = {50, 80, 100};
 
 //PID
-int base = 50;
-float Kp = 1.0;
-float Kd = 6.0;
-float Ki = 0.0;
+int base = 100;
+float Kp = 0.65;
+float Kd = 25;
+float Ki = 0.00001;
 
 #define CANT_ERRORES 25
 int error_sum = 0;
@@ -131,55 +131,6 @@ void end_race(){
 
 //------- FUNCIONES HITS ----------
 
-void Read_hits(){
-    HL = analogRead(LEFT_PIN);
-    HR = analogRead(RIGHT_PIN);
-
-    int umbral_L = (v_s_min[LEFT_IDX] + v_s_max[LEFT_IDX]) * 0.6;
-    int umbral_R = (v_s_min[RIGHT_IDX] + v_s_max[RIGHT_IDX]) * 0.6;
-
-    Serial.println(String(HL) + " " + String(HR));
-
-
-    HL = (HL > umbral_L) ? 0 : 1;
-    HR = (HR > umbral_R) ? 0: 1;
-
-    if(!white_line){
-        HL = !HL;
-        HR = !HR;
-    }
-
-    Serial.println(String(HL) + " " + String(HR) + "\n");
-}
-
-
-void detectGeo() {
-    Read_hits();
-
-    //Detectar geo actual
-    if(HL == HR)
-        geo = (HL == 0) ? 0 : 3; // 0 0 | 1 1
-    else
-        geo = (HL == 1) ? 1 : 2; // 1 0 | 0 1
-
-    //Ver si algo ha cambiado xd
-    if(l_geo == geo)
-        return;
-
-    //Llamar a funcion correspondiente
-    if (geo == 0 && l_geo == 1 && ll_geo == 0)
-        funcion_HL();
-    else if(geo == 0 && l_geo == 2 && ll_geo == 0)
-        funcion_HR();
-    else if(geo == 0 && ((l_geo == 3) || (ll_geo == 3) || (lll_geo == 3)))
-        funcion_Cruce();
-    
-    //Actualizar valores de geo
-    lll_geo = ll_geo;
-    ll_geo = l_geo;
-    l_geo = geo;
-}
-
 
 void funcion_Cruce(){
     // beep(2500, 50);
@@ -194,8 +145,6 @@ void funcion_HL(){
 void funcion_HR() {
   beep(1800, 50);
   fin++;
-
-  Serial.println("Hit " + String(fin));
 
   if(fin >= 2)
     end_race();

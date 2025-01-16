@@ -11,6 +11,10 @@ int v_s_min[SENSOR_COUNT+2];
 int v_s_max[SENSOR_COUNT+2];
 int v_s[SENSOR_COUNT+2];
 
+
+int umbral_l = 0;
+int umbral_r = 0;
+
 volatile int s_p[SENSOR_COUNT];
 bool white_line = true;
 bool online;
@@ -80,6 +84,9 @@ void calibracion(){
     Serial.print("\t");
   }
   Serial.println();
+
+  umbral_l = (v_s_min[LEFT_IDX] + v_s_max[LEFT_IDX]) * 0.6;
+  umbral_r = (v_s_min[RIGHT_IDX] + v_s_max[RIGHT_IDX]) * 0.6;
 }
 
 
