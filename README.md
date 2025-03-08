@@ -3,10 +3,11 @@
 Projecto de un robot velocista siguelineas :D
 
 
-## Master (LauchaBot)
-Robot controlado por ESP32 y PCB custom (cred. Martin Castillo UC)
+## Master (LauchaBot y LauchaTron)
+Robots controlados por ESP32 y PCB custom (cred. Martin Castillo UC)
 
-![LauchaBot](https://github.com/user-attachments/assets/a705dbb1-e050-43db-bff0-8fd65c0fd291)
+![LauchaBot y LauchaTron](https://github.com/user-attachments/assets/2caa2c34-5d8c-4f10-925d-4ab2db9cea6b)
+
 
 ## Lambochino 
 Robot controlado por arduino Nano (modificacion custom de open lamborghino). 
